@@ -8,6 +8,7 @@ import web.service.UserService;
 
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -30,7 +31,7 @@ public class UserController {
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute("new_user") User user) {
         userService.addUser(user);
-        return "redirect:/";
+        return "redirect:/users/";
     }
 
     @GetMapping("/editPage")
@@ -43,12 +44,12 @@ public class UserController {
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
-        return "redirect:/";
+        return "redirect:/users/";
     }
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam(value = "id") String id) {
         userService.deleteUser(Long.parseLong(id));
-        return "redirect:/";
+        return "redirect:/users/";
     }
 }
